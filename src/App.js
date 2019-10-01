@@ -1,10 +1,15 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import CategoryContainer from "./components/CategoryContainer";
+import CategoryCarousel from "./components/carousel";
 
 function App() {
   return (
-   <div>Hello World</div> 
-    );
+    <div>
+      <CategoryCarousel />
+
+      <CategoryContainer />
+    </div>
+  );
 }
 
 export default App;
