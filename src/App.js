@@ -1,11 +1,11 @@
 import React from "react";
 import CategoryContainer from "./components/CategoryContainer";
-import CategoryCarousel from "./components/carousel";
+import CarouselContainer from "./components/CarouselContainer";
 
 function App() {
   return (
     <div>
-      <CategoryCarousel />
+      <CarouselContainer />
 
       <CategoryContainer />
     </div>
