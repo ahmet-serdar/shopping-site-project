@@ -10,26 +10,39 @@ const CategoryCarousel = () => {
         const categoryData = await axios.get(
           "https://products-data.herokuapp.com/api/getCategoryList"
         );
-        console.log(categoryData.data);
-        setCarouselData(categoryData.data);
+
+        setCarouselData(categoryData.data.map(e => e.image));
       } catch (e) {
         console.log(e);
       }
     }
     fetchData();
+    console.log(carouselData);
   }, []);
 
   const [carouselData, setCarouselData] = useState([]);
 
   return (
-    <Carousel width="50%" dynamicHeight={true}>
-      {carouselData.map(e => (
-        <div>
-          <img src={e.image} />
-          <p> {e.name} </p>
+    <div className="slider-container">
+      <Carousel className="carousel-style" width="60%" dynamicHeight={true}>
+        <div className="slider-item-div">
+          <img src={carouselData[0]} />
+          <p> </p>
         </div>
-      ))}
-    </Carousel>
+        <div className="slider-item-div">
+          <img src={carouselData[1]} />
+          <p> </p>
+        </div>
+        <div className="slider-item-div">
+          <img src={carouselData[2]} />
+          <p> </p>
+        </div>
+        <div className="slider-item-div">
+          <img src={carouselData[3]} />
+          <p> </p>
+        </div>
+      </Carousel>
+    </div>
   );
 };
 
