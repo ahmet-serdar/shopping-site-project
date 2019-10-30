@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { Form, Col, Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import Paypal from '../components/PayPal'
 
-const OrderPage = () => {
+const OrderPage = props => {
   const [validated, setValidated] = useState(false);
+  console.log(props);
+  const totalPrice = props.data.reduce((acc, curVal) => {
+    const price = Number(curVal.price);
+    const itemTotalPrice = price * curVal.quantity;
+    return acc + itemTotalPrice;
+  }, 0);
 
   const handleSubmit = event => {
     const form = event.currentTarget;
@@ -76,27 +84,33 @@ const OrderPage = () => {
               <Form.Control type="tel" placeholder="Enter phone" required />
             </Form.Group>
             <Form.Group>
-              <Form.Check
-                required
-                label="Agree to terms and conditions"
-                feedback="You must agree before submitting."
-              />
+            <Form.Check
+            required
+            label="Agree to terms and conditions"
+            feedback="You must agree before submitting."
+            />
             </Form.Group>
-            <Button type="submit" className="btn btn-primary button" >Submit form</Button>
+            <Payyarpal />
+            <Button type="submit" className="btn btn-primary button">
+              Submit form
+            </Button>
           </Form>
-          <Form></Form>
-        </section>
-        <section className="section-right">
-        <div id="border"></div>
-          <h3>
-            Subtotal <br/>
-            piece(s)):
-          </h3>
-          <h1>£</h1>
-        </section>
-      </div>
+          </section>
+          <section className="section-right">
+          <div id="border"></div>
+          <h5>Subtotal: £{totalPrice.toFixed(2)}</h5>
+          <h5>Shipping(Standart): Free</h5>
+          <h1>Order Total: £{totalPrice.toFixed(2)}</h1>
+          </section>
+          </div>
     </div>
   );
 };
 
-export default OrderPage;
+const mapStateToProps = state => {
+  return {
+    data: state.cart
+  };
+};
+
+export default connect(mapStateToProps)(OrderPage);

@@ -26,7 +26,7 @@ const ShoppingCartPage = props => {
                 const qnty = Number(quantity) 
                 props.dispatch(addToCart(e, qnty))
             }
-            
+
             return (
               <div
                 className="card mb-3"
@@ -58,7 +58,7 @@ const ShoppingCartPage = props => {
         <section className="section-right">
         <div id="border"></div>
           <h3>
-            Subtotal <br/>({props.data.length} Item(s):
+            Subtotal <br/>{props.data.length} Item(s):
           </h3>
           <h1>£{totalPrice.toFixed(2)}</h1>
           <BuyNow />
