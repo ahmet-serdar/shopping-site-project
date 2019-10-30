@@ -1,28 +1,33 @@
-const initialState = [];
+const initialState = {
+  items: [],
+  isModalOpen: false
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
-      if (state.indexOf(action.item) === -1) {
+      if (state.items.indexOf(action.item) === -1) {
         action.item.quantity =
           typeof action.quantity === "number" ? action.quantity : 1;
-        action.item.isGreaterThanTen = false;
-        return [...state, action.item];
+        return {...state, items: [...state.items, action.item]};
       } else {
-        const index = state.indexOf(action.item);
-        if (state[index].quantity >= 10) {
-          state[index].isGreaterThanTen = true;
-          return [...state];
-        }
-        state[index].quantity =
+        const index = state.items.indexOf(action.item);
+        if(state.items[index].quantity >= 10){
+
+          return {...state, isModalOpen:true}
+        }      
+        state.items[index].quantity =
           typeof action.quantity === "number"
             ? action.quantity
-            : state[index].quantity + 1;
-        return [...state];
+            : state.items[index].quantity + 1;
+        return {...state};
       }
     }
     case "DELETE_ALL": {
-      return state.filter(({ id }) => id !== action.id);
+      return state.items.filter(({ id }) => id !== action.id);
+    }
+    case 'CLOSE_MODAL': {
+        return {...state, isModalOpen: false}
     }
 
     default: {

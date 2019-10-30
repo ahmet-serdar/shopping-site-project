@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 const Header = props => {
   let totalQuantity = 0
-  props.data.map(i => {
+  console.log(props.data)
+  props.data.items.map(i => {
     totalQuantity = totalQuantity + i.quantity
   })
   return (

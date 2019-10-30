@@ -1,8 +1,7 @@
-export const addToCart = (item = {}, quantity, isGreaterThanTen = false) => ({
+export const addToCart = (item = {}, quantity) => ({
   type: "ADD_TO_CART",
   item,
-  quantity,
-  isGreaterThanTen
+  quantity
 });
 export const removeFromCart = item => ({
   type: "REMOVE_FROM_CART",
@@ -14,3 +13,8 @@ export const deleteAll = id => ({
   type: "DELETE_ALL",
   id
 });
+
+
+export const closeModal = () => ({
+  type: 'CLOSE_MODAL'
+})

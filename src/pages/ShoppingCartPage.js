@@ -6,7 +6,7 @@ import BuyNow from "../components/BuyNow";
 
 const ShoppingCartPage = props => {  
 
-  const totalPrice = props.data.reduce((acc, curVal) => {
+  const totalPrice = props.data.items.reduce((acc, curVal) => {
     const price = Number(curVal.price);
     const itemTotalPrice = price * curVal.quantity;
     return acc + itemTotalPrice;
@@ -15,9 +15,9 @@ const ShoppingCartPage = props => {
   return (
     <div className="cart-page">
       <div className="container">
-      {props.data.length === 0 ? <h3>You don't have any items in your cart.</h3>: 
+      {props.data.items.length === 0 ? <h3>You don't have any items in your cart.</h3>: 
         <section className="section-left">
-          {props.data.map(e => {
+          {props.data.items.map(e => {
             const handleRemove = () => {
               props.dispatch(deleteAll(e.id));
             };
@@ -26,7 +26,7 @@ const ShoppingCartPage = props => {
                 const qnty = Number(quantity) 
                 props.dispatch(addToCart(e, qnty))
             }
-            
+
             return (
               <div
                 className="card mb-3"
@@ -58,7 +58,7 @@ const ShoppingCartPage = props => {
         <section className="section-right">
         <div id="border"></div>
           <h3>
-            Subtotal <br/>({props.data.length} Item(s):
+            Subtotal <br/>{props.data.length} Item(s):
           </h3>
           <h1>£{totalPrice.toFixed(2)}</h1>
           <BuyNow />
