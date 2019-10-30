@@ -6,7 +6,7 @@ import Paypal from '../components/PayPal'
 const OrderPage = props => {
   const [validated, setValidated] = useState(false);
   console.log(props);
-  const totalPrice = props.data.reduce((acc, curVal) => {
+  const totalPrice = props.data.items.reduce((acc, curVal) => {
     const price = Number(curVal.price);
     const itemTotalPrice = price * curVal.quantity;
     return acc + itemTotalPrice;
@@ -90,7 +90,7 @@ const OrderPage = props => {
             feedback="You must agree before submitting."
             />
             </Form.Group>
-            <Payyarpal />
+            <Paypal />
             <Button type="submit" className="btn btn-primary button">
               Submit form
             </Button>
