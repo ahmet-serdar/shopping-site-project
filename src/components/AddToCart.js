@@ -17,7 +17,7 @@ const AddToCart = (props) => {
             <QuantityForm quantity={quantity} setQuantity={setQuantity}/>
             <div className="addCart-form">
                 <a className="btn-addCart" onClick={() => handleAddCart(props.product, quantity)}>
-                    <i className="fas fa-cart-arrow-down fa-2x"></i>
+                    <i className="fas fa-cart-arrow-down fa-2x "></i>
                     <p>Add To Cart</p>
                 </a>          
             </div>
